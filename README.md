@@ -22,4 +22,4 @@ python RL_main.py --data_path ./data
 
 ## Note
 
-The data used in this experiment is anonymous and temporarily not publicly available, so encrypted data (data.json, reflect. json) is used.
+The data used in this experiment is anonymous and temporarily not publicly available, so encrypted data (data.json, reflect. json) is used. 
