@@ -79,11 +79,9 @@ class RL_model(nn.Module):
         martix = martix.cpu().detach().numpy()
         correlation_matrix = np.corrcoef(martix)
 
-        # 提取上三角部分的相关性（不包括对角线）
         upper_triangle_indices = np.triu_indices_from(correlation_matrix, k=1)
         upper_triangle_values = correlation_matrix[upper_triangle_indices]
 
-        # 计算平均相关性值
         average_correlation = np.mean(upper_triangle_values)
         return average_correlation
 
