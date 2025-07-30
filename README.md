@@ -21,12 +21,12 @@ python main.py --data_path ./data --singleCapacity 5 --ReplayBuffer_capacity 4 -
 ```
 
 optional arguments:  
-```--help```show this help message and exit  
-```--data_path```show the the path of data  
-```--singleCapacity```show the size of a single batch of data  
-```--ReplayBuffer_capacity```show the capacity of ReplayBuffer in DQN  
-```--min_size```show the minimum data size for experience replay learning in DQN  
-```--sample_size```show the number of randomly sampled samples in DQN experience replay  
+```--help``` show this help message and exit  
+```--data_path``` show the the path of data  
+```--singleCapacity``` show the size of a single batch of data  
+```--ReplayBuffer_capacity``` show the capacity of ReplayBuffer in DQN  
+```--min_size``` show the minimum data size for experience replay learning in DQN  
+```--sample_size``` show the number of randomly sampled samples in DQN experience replay  
 
 ## Note
 
