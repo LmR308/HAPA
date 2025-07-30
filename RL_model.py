@@ -21,11 +21,9 @@ class RL_model(nn.Module):
         self.aes = AesModel(embedding_dim, opt).cuda()
         
         self.aes_loss_func1 = FocalLoss(opt.FocalLoss_alpha, opt.FocalLoss_gamma,reduction='none')
-        self.aes_loss_func2 = nn.BCEWithLogitsLoss(reduction='none')
-        self.aes_loss_func3 = nn.L1Loss(reduction='none')
+        self.aes_loss_func2 = nn.L1Loss(reduction='none')
         self.aes_loss_func1_ = FocalLoss(opt.FocalLoss_alpha)
-        self.aes_loss_func2_ = nn.BCEWithLogitsLoss()
-        self.aes_loss_func3_ = nn.L1Loss()
+        self.aes_loss_func2_ = nn.L1Loss()
         
         self.aes_cnn_optimizer = optim.Adam(self.aes.CNN.parameters(), lr=opt.lr)
         self.aes_submodels_optimizer = optim.Adam(self.aes.submodels.parameters(), lr=opt.lr)
@@ -110,8 +108,7 @@ class RL_model(nn.Module):
         score = self.aes(img).cuda()
         loss1 = self.aes_loss_func1(score, labels)
         loss2 = self.aes_loss_func2(score, labels)
-        loss3 = self.aes_loss_func3(score, labels)
-        loss_vector = (loss1 + loss2 + loss3)
+        loss_vector = (loss1 + loss2)
         return score, loss_vector
 
     def train_Aes_CNN(self, train_loader):
@@ -122,8 +119,7 @@ class RL_model(nn.Module):
             score = self.aes(img).cuda()
             loss1 = self.aes_loss_func1_(score, torch.tensor(labels).cuda())
             loss2 = self.aes_loss_func2_(score, torch.tensor(labels).cuda())
-            loss3 = self.aes_loss_func3_(score, torch.tensor(labels).cuda())
-            loss = loss1 + loss2 + loss3
+            loss = loss1 + loss2
             self.aes_cnn_optimizer.zero_grad()
             loss.backward()
             self.aes_cnn_optimizer.step()
